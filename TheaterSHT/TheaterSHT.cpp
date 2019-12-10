@@ -5,16 +5,22 @@
 #include <map>
 #include "ExecutableClass.h"
 #include "File.h"
-
+template<typename T>
+void test(T input) {
+	std::cout << T;
+}
 int main()
 {
 	std::map<std::string,Executable> Executables;
-	File<Perfomance> myfile = File<Perfomance>("Perfomances.txt");
+	UserRepository = File<User>("Users.txt");
+	PerfomanceRepository = File<Perfomance>("Perfomances.txt");
+	Perfomances = PerfomanceRepository.GetRecords();
+	Users = UserRepository.GetRecords();
 	Perfomance newPerfomance;
-	newPerfomance.Date = "govno";
-	newPerfomance.PerfomanceName = "gov";
+	newPerfomance.Date = "no";
+	newPerfomance.PerfomanceName = "no";
 	newPerfomance.TheaterName = "no";
 	newPerfomance.Tickets=12;
-	myfile.CreateRecord(newPerfomance);
+	void (*lol)();
 }
 

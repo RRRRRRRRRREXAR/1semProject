@@ -23,25 +23,38 @@ public:
 			
 		}
 		myfile.write((char*)&entity, sizeof(T));
+		myfile.close();
 	}
-	void UpdateFile() {
+	void UpdateFile(List<T> entities) {
+		if (!myfile.is_open()) {
+			myfile.open(Path);
 
+		}
+		for (int i = 0; i < entities.GetSize();i++) {
+			myfile.write((char*)&entities[i], sizeof(T));
+		}
+		myfile.close();
 	}
 	List<T> GetRecords(){
 		if (!rf.is_open()) {
 			rf.open();
 		}
 		if (rf.is_open()) {
-			T newRecord;
 			List<T> newList;
-			while (getline(rf,newRecord)) {
-				newList.push_back(newRecord);
+			while(true){
+				T newRecord;
+				rf.read((char*)&newRecord, sizeof(T));
+				if (newRecord!=nullptr) {
+					newList.push_back(newRecord);
+				}
+				else {
+					break;
+				}
 			}
+			rf.close();
 			return newList;
 		}
-		else {
-			return NULL;
-		}
+		
 	}
 };
 
