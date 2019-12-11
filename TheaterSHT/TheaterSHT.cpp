@@ -14,13 +14,13 @@ int main()
 	std::map<std::string,Executable> Executables;
 	UserRepository = File<User>("Users.txt");
 	PerfomanceRepository = File<Perfomance>("Perfomances.txt");
-	
-	User s;
-	s.Password = "123";
-	s.Role = "admin";
-	s.Username = "lol";
-	UserRepository.CreateRecord(s);
-	UserRepository.GetRecords();
-
+	Perfomances = PerfomanceRepository.GetRecords();
+	Users = UserRepository.GetRecords();
+	Perfomance newPerfomance;
+	newPerfomance.Date = "no";
+	newPerfomance.PerfomanceName = "no";
+	newPerfomance.TheaterName = "no";
+	newPerfomance.Tickets=12;
+	void (*lol)();
 }
 

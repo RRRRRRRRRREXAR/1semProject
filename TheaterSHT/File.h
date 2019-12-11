@@ -5,7 +5,6 @@
 #include <iterator>
 #include <string>
 #include <ios>
-#include <vector>
 template<typename T>
 class File {
 private:
@@ -36,7 +35,7 @@ public:
 		}
 		myfile.close();
 	}
-	void GetRecords(){
+	List<T> GetRecords(){
 		if (!rf.is_open()) {
 			rf.open(Path);
 		}
@@ -49,8 +48,7 @@ public:
 			}
 
 			rf.close();
-			
-			return N;
+			return newList;
 		}
 		
 	}
