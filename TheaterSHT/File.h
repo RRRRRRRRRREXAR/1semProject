@@ -37,20 +37,16 @@ public:
 	}
 	List<T> GetRecords(){
 		if (!rf.is_open()) {
-			rf.open();
+			rf.open(Path);
 		}
 		if (rf.is_open()) {
 			List<T> newList;
-			while(true){
-				T newRecord;
-				rf.read((char*)&newRecord, sizeof(T));
-				if (newRecord!=nullptr) {
-					newList.push_back(newRecord);
-				}
-				else {
-					break;
-				}
+			T newRecord;
+
+			while(rf.read((char*) & newRecord, sizeof(T))){
+				newList.push_back(newRecord);
 			}
+
 			rf.close();
 			return newList;
 		}
