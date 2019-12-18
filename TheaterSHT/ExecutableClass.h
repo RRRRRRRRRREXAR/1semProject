@@ -17,7 +17,7 @@ public:
 			User newUser;
 			std::cout << "Username:" << std::endl;
 			std::cin >> newUser.Username;
-			for (int i = 0; i < Users.GetSize(); i++) {
+			for (int i = 0; i < Users.size(); i++) {
 				if (Users[i].Username == newUser.Username) {
 					std::cout << "Username already exists";
 					return 0;
@@ -44,9 +44,11 @@ public:
 			std::cout << "Input username"<<std::endl;
 			std::string userName;
 			std::cin >> userName;
-			for (int i = 0; i < Users.GetSize();i++) {
+			std::vector<User>::iterator it;
+			for (int i = 0; i < Users.size();i++) {
 				if (Users[i].Username==userName) {
-					Users.removeAt(i);
+					it =Users.begin()+i;
+					Users.erase(it);
 					std::cout << "User successfully deleted";
 					return 1;
 				}
@@ -65,7 +67,7 @@ public:
 			std::string newPassword;
 			std::string username;
 			std::cin >> username;
-			for (int i = 0; i < Users.GetSize();i++) {
+			for (int i = 0; i < Users.size();i++) {
 				if (Users[i].Username==username) {
 					std::cout << "Input new password" << std::endl;
 					std::cin >> newPassword;

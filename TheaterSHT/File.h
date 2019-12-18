@@ -5,6 +5,7 @@
 #include <iterator>
 #include <string>
 #include <ios>
+#include <vector>
 template<typename T>
 class File {
 private:
@@ -25,31 +26,39 @@ public:
 		myfile.write((char*)&entity, sizeof(T));
 		myfile.close();
 	}
-	void UpdateFile(List<T> entities) {
+	void UpdateFile(std::vector<T> entities) {
 		if (!myfile.is_open()) {
 			myfile.open(Path);
 
 		}
-		for (int i = 0; i < entities.GetSize();i++) {
+		for (int i = 0; i < entities.size();i++) {
 			myfile.write((char*)&entities[i], sizeof(T));
 		}
 		myfile.close();
 	}
-	List<T> GetRecords(){
+	std::vector<T> GetRecords(){
+		std::vector<T> newList;
 		if (!rf.is_open()) {
 			rf.open(Path);
 		}
+		
+		
 		if (rf.is_open()) {
-			List<T> newList;
+			
 			T newRecord;
 
 			while(rf.read((char*) & newRecord, sizeof(T))){
-				newList.push_back(newRecord);
+				T tempRecord;
+				newList.push_back(tempRecord);
 			}
 
 			rf.close();
 			return newList;
 		}
+		
+		newList.empty();
+		return newList;
+		
 		
 	}
 };
