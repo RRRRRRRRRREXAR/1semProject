@@ -15,6 +15,7 @@ public:
 	std::string Username;
 	std::string Password;
 	std::string Role;
+	User() = default;
 };
 
 static User CurrentUser;
