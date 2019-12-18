@@ -5,17 +5,10 @@
 #include <map>
 #include "ExecutableClass.h"
 #include "File.h"
+#include <algorithm>
 template<typename T>
 void test(T input) {
 	std::cout << T;
-}
-template<typename T>
-void CopyList(List<T>from,List<T>to)
-{
-	for(int i=0;i<from.GetSize();++i)
-	{
-		to.push_back(from[i]);
-	}
 }
 int main()
 {
@@ -27,9 +20,18 @@ int main()
 	newPerfomance.PerfomanceName = "no";
 	newPerfomance.TheaterName = "no";
 	newPerfomance.Tickets=12;
+	std::vector<User> Users;
+	//PerfomanceRepository.CreateRecord(newPerfomance);
+	std::vector<Perfomance>r = PerfomanceRepository.GetRecords();
+	for (int i = 0; i < r.size(); ++i)
+	{
+		std::cout << r[i].TheaterName << std::endl;
+		std::cout << r[i].PerfomanceName << std::endl;
+		std::cout << r[i].Tickets << std::endl;
+		std::cout << r[i].Date << std::endl;
 
-	
-	CopyList(UserRepository.GetRecords(),Users);
+	}
+
 
 }
 
