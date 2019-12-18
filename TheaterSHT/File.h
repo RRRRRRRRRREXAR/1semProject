@@ -32,7 +32,7 @@ public:
 
 		}
 		for (int i = 0; i < entities.size();i++) {
-			myfile.write((char*)&entities[i], sizeof(T));
+			myfile.write((char*) entities[i], sizeof(T));
 		}
 		myfile.close();
 	}

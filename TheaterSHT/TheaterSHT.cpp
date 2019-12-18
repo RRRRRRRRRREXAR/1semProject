@@ -16,21 +16,21 @@ int main()
 	UserRepository = File<User>("Users.txt");
 	PerfomanceRepository = File<Perfomance>("Perfomances.txt");
 	Perfomance newPerfomance;
-	newPerfomance.Date = "no";
+	newPerfomance.Date = 'no';
 	newPerfomance.PerfomanceName = "no";
 	newPerfomance.TheaterName = "no";
 	newPerfomance.Tickets=12;
 	std::vector<User> Users;
-	//PerfomanceRepository.CreateRecord(newPerfomance);
+	PerfomanceRepository.CreateRecord(newPerfomance);
 	std::vector<Perfomance>r = PerfomanceRepository.GetRecords();
-	for (int i = 0; i < r.size(); ++i)
+	/*for (int i = 0; i < r.size(); ++i)
 	{
 		std::cout << r[i].TheaterName << std::endl;
 		std::cout << r[i].PerfomanceName << std::endl;
 		std::cout << r[i].Tickets << std::endl;
 		std::cout << r[i].Date << std::endl;
 
-	}
+	}*/
 
 
 }
