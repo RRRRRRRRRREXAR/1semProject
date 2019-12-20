@@ -151,12 +151,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Perfomance.cpp" />
     <ClCompile Include="TheaterSHT.cpp" />
+    <ClCompile Include="User.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DataStructures.h" />
     <ClInclude Include="ExecutableClass.h" />
+    <ClInclude Include="Perfomance.h" />
     <ClInclude Include="PerfomanceRepository.h" />
+    <ClInclude Include="User.h" />
     <ClInclude Include="UserRepository.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

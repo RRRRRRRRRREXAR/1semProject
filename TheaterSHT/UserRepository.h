@@ -6,19 +6,24 @@
 #include <ios>
 #include <vector>
 #include "DataStructures.h"
-class UserRepository {
+#include "User.h"
+class UserRepository 
+{
 private:
 	std::ofstream myfile;
 	std::ifstream rf;
 	std::string Path;
 public:
-	UserRepository(std::string Path) {
+	UserRepository(std::string Path) 
+	{
 		myfile = std::ofstream(Path, std::ios_base::app);
 		this->Path = Path;
 		rf = std::ifstream(Path);
 	}
-	void CreateRecord(User entity) {
-		if (!myfile.is_open()) {
+	void CreateRecord(User entity)
+	{
+		if (!myfile.is_open()) 
+		{
 			myfile.open(Path,std::ios_base::app);
 			
 		}

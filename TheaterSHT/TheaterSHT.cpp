@@ -16,14 +16,16 @@ int main()
 	userRepository = UserRepository("Users.txt");
 	perfomanceRepository = PerfomanceRepository("Perfomances.txt");
 	Perfomance newPerfomance;
-	newPerfomance.Date = "no";
-	newPerfomance.PerfomanceName = "no";
-	newPerfomance.TheaterName = "no";
-	newPerfomance.Tickets=12;
+	newPerfomance.Date = "12/03/2002";
+	newPerfomance.PerfomanceName = "Jaba";
+	newPerfomance.TheaterName = "Kola";
+	newPerfomance.Tickets=120;
 	std::vector<User> Users;
-	perfomanceRepository.CreateRecord(newPerfomance);
+	//perfomanceRepository.CreateRecord(newPerfomance);
 
-	//std::vector<Perfomance>r = PerfomanceRepository.GetRecords();
+	std::vector<Perfomance>r = perfomanceRepository.GetRecords();
+	r.pop_back();
+	perfomanceRepository.UpdatePerfomanceRepository(r);
 	/*for (int i = 0; i < r.size(); ++i)
 	{
 		std::cout << r[i].TheaterName << std::endl;

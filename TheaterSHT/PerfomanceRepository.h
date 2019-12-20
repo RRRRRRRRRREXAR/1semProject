@@ -6,18 +6,22 @@
 #include <ios>
 #include <vector>
 #include "DataStructures.h"
-class PerfomanceRepository {
+#include "Perfomance.h"
+class PerfomanceRepository 
+{
 private:
 	std::ofstream myfile;
 	std::ifstream rf;
 	std::string Path;
 public:
-	PerfomanceRepository(std::string Path) {
+	PerfomanceRepository(std::string Path)
+	{
 		myfile = std::ofstream(Path, std::ios_base::app);
 		this->Path = Path;
 		rf = std::ifstream(Path);
 	}
-	void CreateRecord(Perfomance entity) {
+	void CreateRecord(Perfomance entity) 
+	{
 		if (!myfile.is_open()) {
 			myfile.open(Path,std::ios_base::app);
 			
@@ -28,8 +32,10 @@ public:
 		}
 		myfile.close();
 	}
-	void UpdatePerfomanceRepository(std::vector<Perfomance> entities) {
-		if (!myfile.is_open()) {
+	void UpdatePerfomanceRepository(std::vector<Perfomance> entities) 
+	{
+		if (!myfile.is_open())
+		{
 			myfile.open(Path);
 
 		}
@@ -47,12 +53,14 @@ public:
 	}
 	std::vector<Perfomance> GetRecords(){
 		std::vector<Perfomance> newList;
-		if (!rf.is_open()) {
+		if (!rf.is_open()) 
+		{
 			rf.open(Path);
 		}
 		
 		
-		if (rf.is_open()) {
+		if (rf.is_open()) 
+		{
 			
 			std::string TheaterName;
 			std::string Date;
