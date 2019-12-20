@@ -1,56 +1,62 @@
 #pragma once
 #include <fstream>
 #include <iostream>
-#include "List.h"
 #include <iterator>
 #include <string>
 #include <ios>
 #include <vector>
-template<typename T>
-class File {
+#include "DataStructures.h"
+class UserRepository {
 private:
 	std::ofstream myfile;
 	std::ifstream rf;
 	std::string Path;
 public:
-	File(std::string Path) {
+	UserRepository(std::string Path) {
 		myfile = std::ofstream(Path, std::ios_base::app);
 		this->Path = Path;
 		rf = std::ifstream(Path);
 	}
-	void CreateRecord(T entity) {
+	void CreateRecord(User entity) {
 		if (!myfile.is_open()) {
 			myfile.open(Path,std::ios_base::app);
 			
 		}
-		myfile.write((char*)&entity, sizeof(T));
+		if (myfile.is_open())
+		{
+			myfile << entity.Username << " " << entity.Password << " " << entity.Role<<std::endl;
+		}
+
+
+
 		myfile.close();
 	}
-	void UpdateFile(std::vector<T> entities) {
+	void UpdateFile(std::vector<User> entities) {
 		if (!myfile.is_open()) {
 			myfile.open(Path);
 
 		}
-		for (int i = 0; i < entities.size();i++) {
-			myfile.write((char*) entities[i], sizeof(T));
-		}
+
+		
 		myfile.close();
 	}
-	std::vector<T> GetRecords(){
-		std::vector<T> newList;
+	std::vector<User> GetRecords(){
+		std::vector<User> newList;
 		if (!rf.is_open()) {
 			rf.open(Path);
 		}
 		
 		
 		if (rf.is_open()) {
-			
-			T newRecord;
-
-			while(rf.read((char*) & newRecord, sizeof(T))){
-				T tempRecord;
-				newList.push_back(tempRecord);
+			std::string Username;
+			std::string Password;
+			std::string Role;
+			//UserRepository newRecord;
+			while (rf >> Username >> Password >> Role)
+			{
+				newList.push_back(User(Username, Password, Role));
 			}
+			
 
 			rf.close();
 			return newList;

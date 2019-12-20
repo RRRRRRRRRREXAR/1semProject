@@ -1,7 +1,6 @@
 #pragma once
 #include <iostream>
 #include "DataStructures.h"
-#include "File.h"
 class Executable {
 public:
 	virtual int Execute() {
@@ -27,7 +26,7 @@ public:
 			std::cin >> newUser.Password;
 			std::cout << "Role" << std::endl;
 			std::cin >> newUser.Role;
-			UserRepository.CreateRecord(newUser);
+			userRepository.CreateRecord(newUser);
 			std::cout << "User succesfully created";
 			return 1;
 		}
@@ -72,7 +71,7 @@ public:
 					std::cout << "Input new password" << std::endl;
 					std::cin >> newPassword;
 					Users[i].Password = newPassword;
-					UserRepository.UpdateFile(Users);
+					userRepository.UpdateFile(Users);
 					std::cout << "Password succesfully changed"<<std::endl;
 					return 0;
 				}
