@@ -41,7 +41,16 @@ public:
 			myfile.open(Path);
 
 		}
-
+		std::ofstream tempFile;
+		tempFile.open("temp1.txt");
+		for (int i = 0; i < entities.size(); ++i)
+		{
+			tempFile << entities[i].Username << " " << entities[i].Password << " " << entities[i].Role<< std::endl;
+		}
+		myfile.close();
+		tempFile.close();
+		remove("Users.txt");
+		rename("temp1.txt", "Users.txt");
 		
 		myfile.close();
 	}

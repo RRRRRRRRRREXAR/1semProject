@@ -24,8 +24,13 @@ int main()
 	//perfomanceRepository.CreateRecord(newPerfomance);
 
 	std::vector<Perfomance>r = perfomanceRepository.GetRecords();
-	r.pop_back();
+	//r.pop_back();
 	perfomanceRepository.UpdatePerfomanceRepository(r);
+	User* newUser = new User("Юра","Debil","Admin");
+	//userRepository.CreateRecord(*newUser);
+	Users = userRepository.GetRecords();
+	Users.clear();
+	userRepository.UpdateFile(Users);
 	/*for (int i = 0; i < r.size(); ++i)
 	{
 		std::cout << r[i].TheaterName << std::endl;
