@@ -99,6 +99,7 @@ public:
 			std::cout << "Input theater name" << std::endl;
 			std::cin >> newPerfomance.TheaterName;
 			perfomanceRepository.CreateRecord(newPerfomance);
+			return 1;
 		}
 	};
 };
@@ -137,12 +138,12 @@ class ListOfPerfomances : public Executable
 public:
 	int Execute()
 	{
-		if (CurrentUser.Username!="") {
+		
 			for (int i = 0; i < Perfomances.size(); i++)
 			{
 				std::cout << Perfomances[i].PerfomanceName + "_" + Perfomances[i].TheaterName + "_" + Perfomances[i].Date <<Perfomances[i].Tickets << std::endl;
 			}
-		}
+		
 		return 1;
 	}
 };
