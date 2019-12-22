@@ -19,8 +19,8 @@ int main()
 	Executables.insert(std::make_pair("CreateUser", new CreateUser()));
 	Executables.insert(std::make_pair("DeleteUser", new DeleteUser()));
 	Executables.insert(std::make_pair("ChangePassword", new ChangePassword()));
-	Executables.insert(std::make_pair("ChangePassword", new ChangePassword()));
-	
+	Executables.insert(std::make_pair("ListOfPerfomances", new ListOfPerfomances()));
+	Executables.insert(std::make_pair("CreatePerfomance", new CreatePerfomance()));
 	//Perfomance newPerfomance;
 	//newPerfomance.Date = "12/03/2002";
 	//newPerfomance.PerfomanceName = "Jaba";
