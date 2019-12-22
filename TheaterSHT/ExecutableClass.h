@@ -138,12 +138,12 @@ class ListOfPerfomances : public Executable
 public:
 	int Execute()
 	{
-		
+		if (CurrentUser.Role == "Admin" || CurrentUser.Role == "User")
 			for (int i = 0; i < Perfomances.size(); i++)
 			{
-				std::cout << Perfomances[i].PerfomanceName + "_" + Perfomances[i].TheaterName + "_" + Perfomances[i].Date <<Perfomances[i].Tickets << std::endl;
+				std::cout << Perfomances[i].PerfomanceName + "_" + Perfomances[i].TheaterName + "_" + Perfomances[i].Date << "_" + Perfomances[i].Tickets << std::endl;
 			}
-		
+		else std::cout << "Prohibited";
 		return 1;
 	}
 };
