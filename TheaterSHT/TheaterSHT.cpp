@@ -12,25 +12,37 @@ void test(T input) {
 }
 int main()
 {
-	std::map<std::string,Executable> Executables;
+	std::map<std::string,Executable*> Executables;
 	userRepository = UserRepository("Users.txt");
 	perfomanceRepository = PerfomanceRepository("Perfomances.txt");
-	Perfomance newPerfomance;
-	newPerfomance.Date = "12/03/2002";
-	newPerfomance.PerfomanceName = "Jaba";
-	newPerfomance.TheaterName = "Kola";
-	newPerfomance.Tickets=120;
-	std::vector<User> Users;
-	//perfomanceRepository.CreateRecord(newPerfomance);
+	Executables.insert(std::make_pair("Login", new Login()));
+	Executables.insert(std::make_pair("CreateUser", new CreateUser()));
+	Executables.insert(std::make_pair("DeleteUser", new DeleteUser()));
+	Executables.insert(std::make_pair("ChangePassword", new ChangePassword()));
+	Executables.insert(std::make_pair("ChangePassword", new ChangePassword()));
+	
+	//Perfomance newPerfomance;
+	//newPerfomance.Date = "12/03/2002";
+	//newPerfomance.PerfomanceName = "Jaba";
+	//newPerfomance.TheaterName = "Kola";
+	//newPerfomance.Tickets=120;
+	//std::vector<User> Users;
+	////perfomanceRepository.CreateRecord(newPerfomance);
 
-	std::vector<Perfomance>r = perfomanceRepository.GetRecords();
-	//r.pop_back();
-	perfomanceRepository.UpdatePerfomanceRepository(r);
-	User* newUser = new User("Юра","Debil","Admin");
+	Perfomances = perfomanceRepository.GetRecords();
+	////r.pop_back();
+	//perfomanceRepository.UpdatePerfomanceRepository(r);
+	//User* newUser = new User("Yura","123","Admin");
 	//userRepository.CreateRecord(*newUser);
 	Users = userRepository.GetRecords();
-	Users.clear();
-	userRepository.UpdateFile(Users);
+	//Users.clear();
+	//userRepository.UpdateFile(Users);
+	while (true)
+	{
+		std::string userInput;
+		std::cin >> userInput;
+		Executables[userInput]->Execute();
+	}
 	/*for (int i = 0; i < r.size(); ++i)
 	{
 		std::cout << r[i].TheaterName << std::endl;
