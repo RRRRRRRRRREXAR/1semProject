@@ -40,7 +40,7 @@ public:
 
 		}
 		std::ofstream tempFile;
-		tempFile.open("temp.txt");
+		tempFile.open("temp1.txt");
 		for (int i = 0; i < entities.size(); ++i)
 		{
 			tempFile << entities[i].TheaterName << " " << entities[i].Date << " " << entities[i].PerfomanceName << " " << entities[i].Tickets << std::endl;
@@ -48,7 +48,7 @@ public:
 		myfile.close();
 		tempFile.close();
 		remove("Perfomances.txt");
-		rename("temp.txt", "Performances.txt");
+		rename("temp1.txt", "Performances.txt");
 
 	}
 	std::vector<Perfomance> GetRecords(){
