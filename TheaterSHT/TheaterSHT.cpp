@@ -21,6 +21,10 @@ int main()
 	Executables.insert(std::make_pair("ChangePassword", new ChangePassword()));
 	Executables.insert(std::make_pair("ListOfPerfomances", new ListOfPerfomances()));
 	Executables.insert(std::make_pair("CreatePerfomance", new CreatePerfomance()));
+	Executables.insert(std::make_pair("SortPerfomancesByName", new SortPerfomancesByName()));
+	Executables.insert(std::make_pair("SortPerfomancesByTheaterName", new SortPerfomancesByTheaterName()));
+	Executables.insert(std::make_pair("SortPerfomancesByTickets", new SortPerfomancesByTickets()));
+
 	//Perfomance newPerfomance;
 	//newPerfomance.Date = "12/03/2002";
 	//newPerfomance.PerfomanceName = "Jaba";
@@ -41,7 +45,14 @@ int main()
 	{
 		std::string userInput;
 		std::cin >> userInput;
-		Executables[userInput]->Execute();
+		try
+		{
+			Executables[userInput]->Execute();
+		}
+		catch (const std::exception&)
+		{
+			std::cout << "Error";
+		}
 	}
 	/*for (int i = 0; i < r.size(); ++i)
 	{

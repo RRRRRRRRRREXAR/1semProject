@@ -15,5 +15,6 @@ public:
 		this->PerfomanceName = PerfomanceName;
 		this->Tickets = Tickets;
 	}
+	
 };
 

@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include "DataStructures.h"
+#include <algorithm>
 class Executable {
 public:
 	virtual int Execute() {
@@ -99,7 +100,9 @@ public:
 			std::cout << "Input theater name" << std::endl;
 			std::cin >> newPerfomance.TheaterName;
 			perfomanceRepository.CreateRecord(newPerfomance);
+			return 0;
 		}
+		return 1;
 	};
 };
 
@@ -137,12 +140,97 @@ class ListOfPerfomances : public Executable
 public:
 	int Execute()
 	{
+		Perfomances = perfomanceRepository.GetRecords();
 		if (CurrentUser.Username!="") {
 			for (int i = 0; i < Perfomances.size(); i++)
 			{
-				std::cout << Perfomances[i].PerfomanceName + "_" + Perfomances[i].TheaterName + "_" + Perfomances[i].Date <<Perfomances[i].Tickets << std::endl;
+				std::cout << Perfomances[i].PerfomanceName + " " + Perfomances[i].TheaterName + " " + Perfomances[i].Date+" "<<Perfomances[i].Tickets << std::endl;
 			}
 		}
 		return 1;
+	}
+};
+
+bool comparatorPerfomanceName(Perfomance a, Perfomance b)
+{
+	return a.PerfomanceName < b.PerfomanceName;
+}
+
+bool comparatorTheaterName(Perfomance a, Perfomance b)
+{
+	return a.TheaterName < b.TheaterName;
+}
+
+bool comparatorTickets(Perfomance a, Perfomance b)
+{
+	return a.Tickets < b.Tickets;
+}
+class SortPerfomancesByName : public Executable
+{
+public:
+	int Execute()
+	{
+		std::vector<Perfomance> sortedPerfomances = perfomanceRepository.GetRecords();
+		
+		std::sort(sortedPerfomances.begin(), sortedPerfomances.end(),comparatorPerfomanceName);
+		for (int i = 0; i < sortedPerfomances.size(); i++)
+		{
+			std::cout << sortedPerfomances[i].PerfomanceName + " " + sortedPerfomances[i].TheaterName + " " + sortedPerfomances[i].Date + " " << sortedPerfomances[i].Tickets << std::endl;
+		}
+		return 0;
+	}
+};
+class SortPerfomancesByTheaterName : public Executable
+{
+public:
+	int Execute()
+	{
+		std::vector<Perfomance> sortedPerfomances = perfomanceRepository.GetRecords();
+
+		std::sort(sortedPerfomances.begin(), sortedPerfomances.end(), comparatorTheaterName);
+		for (int i = 0; i < sortedPerfomances.size(); i++)
+		{
+			std::cout << sortedPerfomances[i].PerfomanceName + " " + sortedPerfomances[i].TheaterName + " " + sortedPerfomances[i].Date +" "<< sortedPerfomances[i].Tickets << std::endl;
+		}
+		return 0;
+	}
+};
+class SortPerfomancesByTickets : public Executable
+{
+public:
+	int Execute()
+	{
+		std::vector<Perfomance> sortedPerfomances = perfomanceRepository.GetRecords();
+
+		std::sort(sortedPerfomances.begin(), sortedPerfomances.end(), comparatorTickets);
+		for (int i = 0; i < sortedPerfomances.size(); i++)
+		{
+			std::cout << sortedPerfomances[i].PerfomanceName + " " + sortedPerfomances[i].TheaterName + " " + sortedPerfomances[i].Date+" " << sortedPerfomances[i].Tickets << std::endl;
+		}
+		return 0;
+	}
+};
+
+class SearchPerfomance : public Executable
+{
+public:
+	int Execute()
+	{
+		std::string searchInput;
+		std::vector<Perfomance> results;
+		std::cout << "Input search data";
+		std::cin >> searchInput;
+		Perfomances = perfomanceRepository.GetRecords();
+		for (int i =0;i<Perfomances.size();i++)
+		{
+			if (searchInput.find(Perfomances[i].Date) || searchInput.find(Perfomances[i].PerfomanceName) || searchInput.find(Perfomances[i].TheaterName)) {
+				results.push_back(Perfomances[i]);
+			}
+		}
+		for (int i = 0; i < results.size(); i++)
+		{
+			std::cout << results[i].PerfomanceName + " " + results[i].TheaterName + " " + results[i].Date+ " " << results[i].Tickets << std::endl;
+		}
+		return 0;
 	}
 };
